@@ -11,7 +11,7 @@ states on $stateProvider
         url: '/account',
         views: {
             main: {
-                templateUrl: 'account/account.tpl.html',
+                templateUrl: '/account/account.tpl.html',
                 controller: 'AccountCtrl'
             }
         },

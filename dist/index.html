@@ -85,10 +85,17 @@
     <header class="banner">
         <div class="nav">
             <h2 class="title"><a href="/" class="brand">Benkyet</a></h2>
-            <ul class="menu" ng-show="state === 'loggedOut'">
-                <li><a class="h5" href="/login">Sign Up</a></li>
-                <a href="/login" class="btn btn--gray">Log In</a>
-            </ul>
+            <section class="menu" ng-show="state === 'loggedOut'">
+                <a
+                        style="width: 100%;"
+                        target="_top"
+                        ng-href="/1.0/auth/facebook">
+                    <img
+                            class="center fb-login"
+                            width="230px"
+                            src="./../assets/fb_login.png">
+                </a>
+            </section>
             <ul class="menu" ng-show="isAuthenticated();">
                 <li><a class="h5" href="/account">Account</a></li>
                 <button class="btn btn--gray" ng-click="logoutUser();">Log Out</button>
@@ -97,7 +104,7 @@
     </header>
     <section class="sub-banner">
         <p class="content sub-banner__tagline">
-            Start selling to your community <a href="/login" class="btn--orange">today</a>
+            Start selling to your community <a href="/signup/step1" class="btn--orange">today</a>
         </p>
     </section>
     <section

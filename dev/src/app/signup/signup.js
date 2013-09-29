@@ -1,22 +1,19 @@
-angular.module('bk-page-signup', ['ui.state']).config([
+angular.module('bk-page-signup', [
+  'ui.router',
+  'ui.state'
+]).config([
   '$stateProvider',
   function config($stateProvider) {
     $stateProvider.state('signup', {
+      abstract: true,
       url: '/signup',
-      views: {
-        main: {
-          templateUrl: 'signup/signup.tpl.html',
-          controller: 'SignupCtrl'
-        }
-      },
-      resolve: {
-        rUser: [
-          'User',
-          function (User) {
-            User.autologin('account', true);
-          }
-        ]
-      }
+      template: '<div><div ui-view></div></div>'
+    }).state('signup.step1', {
+      url: '/step1',
+      templateUrl: 'signup/partials/step_1.tpl.html'
+    }).state('signup.step2', {
+      url: '/step2',
+      templateUrl: 'signup/partials/step_2.tpl.html'
     });
   }
 ]).controller('SignupCtrl', [

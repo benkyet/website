@@ -112,30 +112,36 @@
   text-align: right;
 }
 
+/* line 84, ../../src/sass/page-index.scss */
+.fb-login {
+  position: relative;
+  top: 10px;
+}
+
 /* Social media sprites
    ========================================================================== */
-/* line 86, ../../src/sass/page-index.scss */
+/* line 91, ../../src/sass/page-index.scss */
 .sprite {
   background: url("./../assets/sprites.png");
 }
 
-/* line 89, ../../src/sass/page-index.scss */
+/* line 94, ../../src/sass/page-index.scss */
 .sprite--fb, .sprite--twitter {
   width: 32px;
   height: 32px;
 }
 
-/* line 93, ../../src/sass/page-index.scss */
+/* line 98, ../../src/sass/page-index.scss */
 .sprite--twitter {
   background-position: 0px 0px;
 }
 
-/* line 96, ../../src/sass/page-index.scss */
+/* line 101, ../../src/sass/page-index.scss */
 .sprite--fb {
   background-position: 0px -32px;
 }
 
-/* line 99, ../../src/sass/page-index.scss */
+/* line 104, ../../src/sass/page-index.scss */
 .sprite2 {
   background-image: url("./../assets/sprites2.png");
   cursor: pointer;
@@ -144,7 +150,7 @@
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-/* line 103, ../../src/sass/page-index.scss */
+/* line 108, ../../src/sass/page-index.scss */
 .sprite2:hover {
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
@@ -153,31 +159,31 @@
   transform: scale(1.2);
 }
 
-/* line 107, ../../src/sass/page-index.scss */
+/* line 112, ../../src/sass/page-index.scss */
 .sprite2--fb, .sprite2--twitter, .sprite2--mail {
   width: 88px;
   height: 70px;
 }
 
-/* line 111, ../../src/sass/page-index.scss */
+/* line 116, ../../src/sass/page-index.scss */
 .sprite2--fb {
   background-position: 0 0;
 }
 
-/* line 114, ../../src/sass/page-index.scss */
+/* line 119, ../../src/sass/page-index.scss */
 .sprite2--twitter {
   margin-left: 60px;
   background-position: 0 -90px;
 }
 
-/* line 119, ../../src/sass/page-index.scss */
+/* line 124, ../../src/sass/page-index.scss */
 .menu {
   position: absolute;
   top: 0;
   right: 20px;
 }
 
-/* line 125, ../../src/sass/page-index.scss */
+/* line 130, ../../src/sass/page-index.scss */
 .menu li {
   padding-top: 12px;
   width: 100px;
@@ -185,22 +191,22 @@
   cursor: pointer;
   border-top: 3px solid transparent;
 }
-/* line 132, ../../src/sass/page-index.scss */
+/* line 137, ../../src/sass/page-index.scss */
 .menu li:hover {
   border-top: 3px solid white;
 }
 
-/* line 136, ../../src/sass/page-index.scss */
+/* line 141, ../../src/sass/page-index.scss */
 .menu li a {
   margin-top: 10px;
 }
 
-/* line 140, ../../src/sass/page-index.scss */
+/* line 145, ../../src/sass/page-index.scss */
 .layout {
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAALElEQVQIHWN88+LOfwYk8OXLVwYmJD6YycPDjRAEqYABuEqQChhgQlYBEwQAUMYMlj+hubwAAAAASUVORK5CYII=");
 }
 
-/* line 144, ../../src/sass/page-index.scss */
+/* line 149, ../../src/sass/page-index.scss */
 .brand {
   font-family: lostart;
   color: white;

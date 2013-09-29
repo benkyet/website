@@ -8,7 +8,6 @@ angular.module( 'main', [
         'templates-app',
         'templates-common',
         'bk-page-signup',
-        'ui.state',
         'ui.router',
         'bk-service-user',
         'bk-page-login',

@@ -1,4 +1,4 @@
-angular.module('templates-app', ['account/account.tpl.html', 'admin/admin.tpl.html', 'admin/users.tpl.html', 'home/home.tpl.html', 'item/item.tpl.html', 'login/login.tpl.html', 'signup/signup.tpl.html']);
+angular.module('templates-app', ['account/account.tpl.html', 'admin/admin.tpl.html', 'admin/users.tpl.html', 'home/home.tpl.html', 'item/item.tpl.html', 'login/login.tpl.html', 'signup/partials/step_1.tpl.html', 'signup/partials/step_2.tpl.html', 'signup/signup.tpl.html']);
 
 angular.module("account/account.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account/account.tpl.html",
@@ -558,9 +558,30 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
     "<br>");
 }]);
 
+angular.module("signup/partials/step_1.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("signup/partials/step_1.tpl.html",
+    "Hello agaiiiiiiiin\n" +
+    "        <button ui-sref=\"signup.step2\" style=\"cursor: pointer;\">Step 2</button>\n" +
+    "\n" +
+    "<a\n" +
+    "        style=\"width: 100%;\"\n" +
+    "        target=\"_top\"\n" +
+    "        ng-href=\"/1.0/auth/facebook\">\n" +
+    "    <img\n" +
+    "            class=\"center\"\n" +
+    "            src=\"./../assets/fb_login.png\">\n" +
+    "</a>");
+}]);
+
+angular.module("signup/partials/step_2.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("signup/partials/step_2.tpl.html",
+    "hello again");
+}]);
+
 angular.module("signup/signup.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("signup/signup.tpl.html",
     "<br>\n" +
+    "        <button ui-sref=\"signup.step1\">step 1</button>\n" +
     "<form\n" +
     "        name=\"signupForm\"\n" +
     "        class=\"signup\"\n" +
