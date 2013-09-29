@@ -1482,7 +1482,7 @@ input[type="text"], input[type="password"] {
 
 /* line 61, ../../src/sass/page-index.scss */
 .footer-banner {
-  background-color: #5dab1f;
+  background-color: rgba(93, 171, 31, 0.4);
   height: 110px;
   width: 100%;
   min-width: 920px;
