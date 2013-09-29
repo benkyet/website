@@ -1,4 +1,4 @@
-angular.module('templates-app', ['account/account.tpl.html', 'admin/admin.tpl.html', 'admin/users.tpl.html', 'home/home.tpl.html', 'item/item.tpl.html', 'login/login.tpl.html', 'signup/partials/step_1.tpl.html', 'signup/partials/step_2.tpl.html', 'signup/signup.tpl.html']);
+angular.module('templates-app', ['account/account.tpl.html', 'home/home.tpl.html', 'item/item.tpl.html', 'login/login.tpl.html', 'signup/partials/step_1.tpl.html', 'signup/partials/step_2.tpl.html', 'signup/signup.tpl.html']);
 
 angular.module("account/account.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account/account.tpl.html",
@@ -217,23 +217,6 @@ angular.module("account/account.tpl.html", []).run(["$templateCache", function($
     "</section>\n" +
     "<br>\n" +
     "");
-}]);
-
-angular.module("admin/admin.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("admin/admin.tpl.html",
-    "And for the admin too this is master and develop too yoo yoo yoo yoo {{ name }}\n" +
-    "\n" +
-    "        {{ content }}\n" +
-    "\n" +
-    "<a href=\"/about\">Account</a>");
-}]);
-
-angular.module("admin/users.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("admin/users.tpl.html",
-    "<h2>\n" +
-    "    The list of users\n" +
-    "    Yes it is {{ name }}\n" +
-    "</h2>");
 }]);
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
