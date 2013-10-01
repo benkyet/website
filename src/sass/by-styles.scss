@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "lostart";
+  src: url("../assets/lost-art-font.woff");
+}
+
+.by-brand{
+  font-family: lostart;
+  font-size: 35px;
+  font-weight: lighter;
+  position: relative;
+  top: 4px;
+}
+
+.by-banr{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+$gmailYellow      :       rgba(255, 215, 111, 1.0000);
+.by-banr--small{
+  background-color: $gmailYellow;
+  color: black;
+}
+
+$gmailBlue      :       rgba(40, 78, 168, 1.0000);
+.by-usr--email{
+  color: $gmailBlue;
+  text-decoration: underline;
+}
+
+//Taken from btn-outline-inverse in bs-benkyet.scss
+.by-is-selected {
+  color: #563d7c;
+  text-shadow: none;
+  background-color: #fff;
+  border-color: #fff;
+  //@include box-shadow(white(1) 0 0 2px);
+}

@@ -42,8 +42,9 @@
     <meta property="og:description" content="Sell and buy from your community.">
 
     <!-- font awesome from BootstrapCDN and normalizeCSS -->
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link href="https://raw.github.com/necolas/normalize.css/master/normalize.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
 
@@ -86,40 +87,65 @@
     <link rel="stylesheet" href="assets/font-awesome-ie7.min.css />
     <![endif]-->
 </head>
-<body>
+<body class="bs-docs-home">
 
-    <header class="banner">
-        <div class="nav">
-            <h2 class="title"><a href="/" class="brand">Benkyet</a></h2>
-            <section class="menu" ng-show="state === 'loggedOut'">
-                <a
-                        style="width: 100%;"
-                        target="_top"
-                        ng-href="/1.0/auth/facebook">
-                    <img
-                            class="center fb-login"
-                            width="230px"
-                            src="./../assets/fb_login.png">
-                </a>
-            </section>
-            <ul class="menu" ng-show="isAuthenticated();">
-                <li><a class="h5" href="/account">Account</a></li>
-                <button class="btn btn--gray" ng-click="logoutUser();">Log Out</button>
-            </ul>
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button
+                        class="navbar-toggle"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target=".bs-navbar-collapse">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="./" class="navbar-brand by-brand">Benkyet</a>
+            </div>
+            <nav
+                    class="navbar-collapse bs-navbar-collapse collapse"
+                    role="navigation"
+                    style="height: 1px;">
+                <ul class="nav navbar-nav navbar-right" ng-show="state === 'loggedOut'">
+                    <li>
+                        <a
+                                target="_top"
+                                href="/1.0/auth/facebook">Log In with Facebook</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated();">
+                    <li>
+                        <a href="./account">Account</a>
+                    </li>
+                    <li>
+                        <a href="" ng-click="logoutUser();">Log out</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
-    <section class="sub-banner">
-        <p class="content sub-banner__tagline">
-            Start selling to your community <a href="/signup/step1" class="btn--orange">today</a>
-        </p>
-    </section>
+
+    <div class="bs-old-docs">
+        <div class="container text-center">
+            <strong>
+                Start selling to your community
+                <a href="/1.0/auth/facebook">Today</a>
+            </strong>
+
+        </div>
+    </div>
+
     <section
             ng-show="isAuthenticated();"
-            class="banr banr--small">
-        <p class="usr--status">
-            Replies to your ads are sent to <b class="usr--email">{{ current.email }}</b>
-        </p>
+            class="by-banr by-banr--small">
+        <strong>
+            Replies to your ads are sent to <b class="by-usr--email">{{ current.email }}</b>
+        </strong>
     </section>
+
     <section
             ng-show="itemUploaded === true;"
             class="banr banr--green-small">

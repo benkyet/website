@@ -89,7 +89,7 @@ $greenVisualSuccess       :       rgba(122, 189, 0, 0.5);
 /* Social media sprites
    ========================================================================== */
 .sprite{
-  background: url('./../assets/sprites.png');
+  background: url('../assets/sprites.png');
 }
 .sprite--fb, .sprite--twitter{
   width: 32px;
@@ -102,7 +102,7 @@ $greenVisualSuccess       :       rgba(122, 189, 0, 0.5);
   background-position: 0px -32px;
 }
 .sprite2 {
-  background-image: url('./../assets/sprites2.png');
+  background-image: url('../assets/sprites2.png');
   cursor: pointer;
   @include transition(all 0.2s ease);
   &:hover{
