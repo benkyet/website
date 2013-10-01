@@ -1,21 +1,84 @@
-<br>
 <section class="container">
+    <section class="col-sm-7">
+        <img style="width: 100%;" src="{{ item.pictures[0] }}">
+    </section>
+    <section class="col-sm-5">
+        <h2>
+            {{ item.name }}
+        </h2>
 
-    <section class="main">
-        <h2>{{ item.name }} - {{ item.price | currency:"£ " }}</h2>
+        <h4>
+            {{ item.price | currency:"£ " }}
+        </h4>
 
-        <img class="thumb--large" ng-src="{{ item.pictures[0] }}">
-
-        <h5>{{ item.location }}</h5>
         <p>
             {{ item.description }}
         </p>
 
 
+        <form
+                novalidate
+                name="replyForm"
+                ng-submit="sendMessage();"
+                ng-hide="success === true"
+                ng-init="message = {};">
 
-        <br>
-        <br>
+            <div>
+
+                <h4>
+                    Reply to this ad:
+                </h4>
+                <input
+                        required
+                        type="text"
+                        class="form-control"
+                        ng-model="message.name"
+                        placeholder="Your Name">
+                <br>
+                <input
+                        required
+                        type="text"
+                        class="form-control"
+                        ng-model="message.email"
+                        placeholder="Your Email">
+                <br>
+                <input
+                        required
+                        type="text"
+                        class="form-control"
+                        ng-model="Subject"
+                        placeholder="{{ item.name }}">
+                <br>
+                <textarea
+                        class="form-control"
+                        required
+                        cols="22"
+                        rows="10"
+                        ng-model="message.body">
+                    Hi, I found your listing on Benkyet and would like to set up a time to see see/buy this item. Please send me more information about it.
+
+                    Thank you.
+                </textarea>
+                <br>
+                <button
+                        ng-disabled="!canSave();"
+                        class="btn btn--gray">
+                    Send Reply
+                </button>
+
+            </div>
+
+        </form>
+
+
+
     </section>
+</section>
+
+<br>
+<section class="container">
+
+
 
     <section class="side">
 
@@ -23,57 +86,7 @@
 
 
 
-                <form
-                        novalidate
-                        class="form form--blue lyt--reply-to-ad-form"
-                        name="replyForm"
-                        ng-submit="sendMessage();"
-                        ng-hide="success === true"
-                        ng-init="message = {};">
 
-                    <div>
-
-                    <h4>
-                        Reply to this ad:
-                    </h4>
-                    <input
-                            required
-                            type="text"
-                            class="ipt ipt--single"
-                            ng-model="message.name"
-                            placeholder="Your Name">
-                    <input
-                            required
-                            type="text"
-                            class="ipt ipt--single"
-                            ng-model="message.email"
-                            placeholder="Your Email">
-                    <input
-                            required
-                            type="text"
-                            class="ipt ipt--single"
-                            ng-model="message.subject"
-                            placeholder="{{ item.name }}">
-                    <textarea
-                            required
-                            cols="22"
-                            rows="10"
-                            ng-model="message.body">
-                        Hi, I found your listing on Benkyet and would like to set up a time to see see/buy this item. Please send me more information about it.
-
-                        Thank you.
-                    </textarea>
-                    <br>
-                    <br>
-                    <button
-                            ng-disabled="!canSave();"
-                            class="btn btn--gray">
-                        Send Reply
-                    </button>
-
-                    </div>
-
-                </form>
 
 
 

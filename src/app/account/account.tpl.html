@@ -1,134 +1,136 @@
+<section class="container">
+<!--<button-->
+        <!--class="btn btn--gray"-->
+        <!--ng-click="isAddingItem = true; isUpdatingAccount = false;">Add Item</button>-->
+<button
+        class="btn btn-outline-inverse btn-lg by-margin-top-10"
+        ng-click="isUpdatingAccount = true; isAddingItem = false;">Update Account</button>
+<button
+        class="btn btn-outline-inverse btn-lg"
+        ng-click="goToWizard();">Add Item
+    </button>
+
+
+<form
+        name="updateAccountForm"
+        class="col-lg-offset-2 col-lg-8"
+        ng-submit="updateUser();"
+        ng-show="isUpdatingAccount === true;">
+    <div>
+        <input
+                required
+                ng-model="current.username"
+                type="text"
+                placeholder="Username"
+                class="form-control by-margin-top-10">
+        <input
+                required
+                ng-model="current.email"
+                type="text"
+                placeholder="Email"
+                class="form-control by-margin-top-10">
+        <input
+                required
+                ng-init="current.pass = ''"
+                ng-model="current.pass"
+                type="password"
+                placeholder="Change password"
+                class="form-control by-margin-top-10">
+        <input
+                required
+                ng-init="current.confirm = ''"
+                ng-model="current.confirm"
+                type="password"
+                placeholder="Confirm New Password"
+                class="form-control by-margin-top-10">
+
+        <div class="position-button-middle">
+            <button
+                    class="btn btn--gray center--inline"
+                    ng-disabled="!canSave('updateAccountForm') || isProgressing;">Save</button>
+            <button
+                    class="btn btn--gray center--inline"
+                    ng-click="isUpdatingAccount = false;">Cancel</button>
+            <img
+                    ng-show="isProgressing"
+                    src="./../assets/spinner.gif"
+                    style="vertical-align: middle;">
+        </div>
+
+    </div>
+</form>
+
+<form
+        name="newItemForm"
+        ng-submit="sendItem();"
+        ng-show="isAddingItem === true"
+        class="form form--blue lyt--new-item-form">
+    <div>
+        <p class="h3">
+            Item details
+        </p>
+        <input
+                required
+                ng-model="item.name"
+                class="ipt ipt--inline"
+                placeholder="Title - Editor - Year"
+                type="text">
+        <input
+                required
+                ng-model="item.price"
+                class="ipt ipt--inline"
+                placeholder="Price"
+                type="text">
+        <input
+                required
+                ng-model="item.location"
+                class="ipt ipt--inline"
+                placeholder="Location"
+                type="text">
+        <p class="h4">
+            DESCRIPTION
+        </p>
+        <textarea
+                required
+                ng-model="item.description"
+                rows="10"
+                cols="98"
+                placeholder="Describe the item here">
+        </textarea>
+        <br>
+        <p class="h4">
+            COMMUNITY
+        </p>
+        <select
+                required
+                ng-options="g for g in groups"
+                ng-model="item.group"></select>
+        <p class="h4">
+            PICTURES
+        </p>
+        <fileupload pictures="pictures"></fileupload>
+        <br>
+        <!--<progress id="progress" value="0"></progress>-->
+        <button
+                class="btn btn--gray"
+                ng-disabled="!canSave('newItemForm') || isProgressing;">
+            Send</button>
+        <button
+                class="btn btn--gray"
+                ng-click="isAddingItem = false;">Cancel</button>
+        <img
+                ng-show="isProgressing"
+                src="./../assets/spinner.gif"
+                style="vertical-align: middle;">
+    </div>
+
+
+</form>
+
 <br>
-<section class="account">
+<br>
 
-    <button
-            class="btn btn--gray"
-            ng-click="isAddingItem = true; isUpdatingAccount = false;">Add Item</button>
-    <button
-            class="btn btn--gray"
-            ng-click="isUpdatingAccount = true; isAddingItem = false;">Update Account</button>
-    <a
-            class="btn btn--gray"
-            href="/wizard/step1">Wizard</a>
-
-        <form
-                name="updateAccountForm"
-                class="form form--blue lyt--update-account-form"
-                ng-submit="updateUser();"
-                ng-show="isUpdatingAccount === true;">
-            <div>
-                <input
-                        required
-                        ng-model="current.username"
-                        type="text"
-                        placeholder="Username"
-                        class="ipt ipt--single center">
-                <input
-                        required
-                        ng-model="current.email"
-                        type="text"
-                        placeholder="Email"
-                        class="ipt ipt--single center">
-                <input
-                        required
-                        ng-init="current.pass = ''"
-                        ng-model="current.pass"
-                        type="password"
-                        placeholder="Change password"
-                        class="ipt ipt--single center">
-                <input
-                        required
-                        ng-init="current.confirm = ''"
-                        ng-model="current.confirm"
-                        type="password"
-                        placeholder="Confirm New Password"
-                        class="ipt ipt--single center">
-
-                <div class="position-button-middle">
-                    <button
-                            class="btn btn--gray center--inline"
-                            ng-disabled="!canSave('updateAccountForm') || isProgressing;">Save</button>
-                    <button
-                            class="btn btn--gray center--inline"
-                            ng-click="isUpdatingAccount = false;">Cancel</button>
-                    <img
-                            ng-show="isProgressing"
-                            src="./../assets/spinner.gif"
-                            style="vertical-align: middle;">
-                </div>
-
-            </div>
-        </form>
-
-        <form
-                name="newItemForm"
-                ng-submit="sendItem();"
-                ng-show="isAddingItem === true"
-                class="form form--blue lyt--new-item-form">
-            <div>
-                <p class="h3">
-                    Item details
-                </p>
-                <input
-                        required
-                        ng-model="item.name"
-                        class="ipt ipt--inline"
-                        placeholder="Title - Editor - Year"
-                        type="text">
-                <input
-                        required
-                        ng-model="item.price"
-                        class="ipt ipt--inline"
-                        placeholder="Price"
-                        type="text">
-                <input
-                        required
-                        ng-model="item.location"
-                        class="ipt ipt--inline"
-                        placeholder="Location"
-                        type="text">
-                <p class="h4">
-                    DESCRIPTION
-                </p>
-                <textarea
-                        required
-                        ng-model="item.description"
-                        rows="10"
-                        cols="98"
-                        placeholder="Describe the item here">
-                </textarea>
-                <br>
-                <p class="h4">
-                    COMMUNITY
-                </p>
-                <select
-                        required
-                        ng-options="g for g in groups"
-                        ng-model="item.group"></select>
-                <p class="h4">
-                    PICTURES
-                </p>
-                <fileupload pictures="pictures"></fileupload>
-                <br>
-                <!--<progress id="progress" value="0"></progress>-->
-                <button
-                        class="btn btn--gray"
-                        ng-disabled="!canSave('newItemForm') || isProgressing;">
-                    Send</button>
-                <button
-                        class="btn btn--gray"
-                        ng-click="isAddingItem = false;">Cancel</button>
-                <img
-                        ng-show="isProgressing"
-                        src="./../assets/spinner.gif"
-                        style="vertical-align: middle;">
-            </div>
-
-
-        </form>
-
-    <br>
-    <br>
+<section class="col-lg-offset-2 col-lg-8">
     <h3>Your items for sale</h3>
 
     <article class="item-box" ng-repeat="item in filteredItems = (items | filter:criteria | orderBy:sortField:reverse)" ng-controller="s-ItemCtrl">
@@ -207,11 +209,6 @@
             </form>
         </div>
     </article>
-
-
-
-
-
+</section>
 
 </section>
-<br>

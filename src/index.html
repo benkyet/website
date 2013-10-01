@@ -12,7 +12,7 @@
     <!-- http://t.co/dKP3o1e -->
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="width=1050">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
     <!-- iOS specific -->
@@ -88,7 +88,7 @@
     <![endif]-->
 </head>
 <body class="bs-docs-home">
-
+<div id="wrap">
     <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
         <div class="container">
             <div class="navbar-header">
@@ -157,28 +157,17 @@
     <!--See UI router doc for info about templates-->
     <div ui-view="main" class="layout"></div>
 
+    <div id="push"></div>
+</div>
 
-    <footer class="footer-banner">
-        <section class="footer">
-            <section class="footer__right">
-                <a href="https://twitter.com/benkyet" target="_blank">
-                    <img class="sprite sprite--twitter">
-                </a>
-                <a href="https://www.facebook.com/benkyet" target="_blank">
-                    <img class="sprite sprite--fb">
-                </a>
-            </section>
-            <hr width="975" style="margin-left: -1em;">
-            <section class="footer__left">
-                <h2 class="brand">Benkyet</h2>
-            </section>
-            <section class="footer__right">
-                Make your community a badass marketplace<br>
-                &copy; Benkyet
-            </section>
-        </section>
-    </footer>
 
+
+
+    <div class="bs-old-docs" id="footer">
+        <div class="container">
+            <p class="pull-left">Make your community the perfect marketplace</p>
+        </div>
+    </div>
 
 </body>
 </html>

@@ -1,74 +1,78 @@
-<section
-        class="account">
+<section class="container">
+    <section class="col-lg-offset-2 col-lg-8">
 
-    <form
-            name="newItemForm"
-            ng-submit="sendItem();"
-            class="form form--blue lyt--new-item-form">
-        <div>
-            <p class="h3">
-                Item details
-            </p>
-            <input
-                    required
-                    ng-model="item.name"
-                    class="ipt ipt--inline"
-                    placeholder="Title - Editor - Year"
-                    type="text">
-            <input
-                    required
-                    ng-model="item.price"
-                    class="ipt ipt--inline"
-                    placeholder="Price"
-                    type="text">
-            <input
-                    required
-                    ng-model="item.location"
-                    class="ipt ipt--inline"
-                    placeholder="Location"
-                    type="text">
-            <p class="h4">
-                DESCRIPTION
-            </p>
-            <textarea
-                    required
-                    ng-model="item.description"
-                    rows="10"
-                    cols="98"
-                    placeholder="Describe the item here">
-            </textarea>
-            <br>
-            <p class="h4">
-                COMMUNITY
-            </p>
-            <select
-                    required
-                    ng-options="g for g in groups"
-                    ng-model="item.group"></select>
-            <p class="h4">
-                PICTURES
-            </p>
-            <fileupload pictures="pictures"></fileupload>
-            <br>
-            <!--<progress id="progress" value="0"></progress>-->
-            <button
-                    class="btn btn--gray"
-                    ng-disabled="!canSave('newItemForm') || isProgressing;">
-                Next</button>
-            <button
-                    class="btn btn--gray"
-                    ng-click="isAddingItem = false;">Cancel</button>
-            <a
-                    href="/wizard/step2"
-                    class="btn btn--gray align-right"
-                    >Next</a>
-            <img
-                    ng-show="isProgressing"
-                    src="./../assets/spinner.gif"
-                    style="vertical-align: middle;">
-        </div>
+        <form
+                name="newItemForm"
+                ng-submit="sendItem();"
+                class="">
+            <div>
+                <p class="h3 by-margin-top-10">
+                    ITEM DETAILS
+                </p>
+                <div class="form-inline col-lg-4">
+                    <input
+                            required
+                            ng-model="item.name"
+                            class="form-control by-margin-top-10"
+                            placeholder="Title - Editor - Year"
+                            type="text">
+                </div>
+                <div class="form-inline col-lg-4">
+                    <input
+                            required
+                            ng-model="item.price"
+                            class="form-control by-margin-top-10"
+                            placeholder="Price"
+                            type="text">
+                </div>
+                <div class="form-inline col-lg-4">
+                    <input
+                            required
+                            ng-model="item.location"
+                            class="form-control by-margin-top-10"
+                            placeholder="Location"
+                            type="text">
+                </div>
+
+                <h4>
+                    DESCRIPTION
+                </h4>
+                <textarea
+                        required
+                        class="form-control"
+                        ng-model="item.description"
+                        placeholder="Describe the item here">
+                </textarea>
+                <p class="h4 by-margin-top-10">
+                    COMMUNITY
+                </p>
+                <select
+                        required
+                        ng-options="g for g in groups"
+                        ng-model="item.group"></select>
+                <p class="h4 by-margin-top-10">
+                    PICTURES
+                </p>
+                <fileupload pictures="pictures"></fileupload>
+                <br>
+
+                <a
+                        href="/account"
+                        >Back</a>
+
+                <!--ng-disabled="!canSave('newItemForm') || isProgressing;"-->
+                <a
+                        href="/wizard/step2"
+                        class="pull-right"
+                        >Next</a>
+                <img
+                        ng-show="isProgressing"
+                        src="./../assets/spinner.gif"
+                        style="vertical-align: middle;">
+            </div>
 
 
-    </form>
+        </form>
 
+    </section>
 </section>

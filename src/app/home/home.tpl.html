@@ -95,56 +95,63 @@
     </div>
 </div>
 
-    <section class="sort-box">
-        <div class="sort-box__filters">
-            <b style="margin-left: 20px;">Sort </b>
-            <a
-                    href=""
-                    class="label--single text-light"
-                    ng-click="sort('price')"
-                    ng-class="{'is-selected': isSortUp('price') || isSortDown('price')}"
-                    >Price</a>
-            <i
-                    ng-class="{'icon-chevron-up': isSortUp('price'), 'icon-chevron-down': isSortDown('price')}"></i>
-            <a
-                    href=""
-                    class="label--single text-light"
-                    ng-click="sort('name')"
-                    ng-class="{'is-selected': isSortUp('name') || isSortDown('name')}"
-                    >Name</a>
-            <i
-                    ng-class="{'icon-chevron-up': isSortUp('name'), 'icon-chevron-down': isSortDown('name')}"></i>
-        </div>
-        <label class="sort-box__search">
-            Search for: <input
-                class="ipt-padding"
-                placeholder="e.g. Financial Accounting"
-                type="text"
-                ng-model="criteria">
-        </label>
-    </section>
+<section class="container bs-old-docs">
+    <div class="col-sm-4"
+         style="position: relative;top: 7px;">
+        <b style="margin-right: 20px;">Sort</b>
+        <a
+                href=""
+                class="label--single text-light"
+                ng-click="sort('price')"
+                ng-class="{'is-selected': isSortUp('price') || isSortDown('price')}"
+                >Price</a>
+        <i
+                class="glyphicon"
+                ng-class="{'glyphicon-chevron-up': isSortUp('price'), 'glyphicon-chevron-down': isSortDown('price')}"></i>
+        <a
+                href=""
+                class="label--single text-light"
+                ng-click="sort('name')"
+                ng-class="{'is-selected': isSortUp('name') || isSortDown('name')}"
+                >Name</a>
+        <i
+                class="glyphicon"
+                ng-class="{'glyphicon-chevron-up': isSortUp('name'), 'glyphicon-chevron-down': isSortDown('name')}"></i>
+    </div>
 
-
-
-    <section class="max-span">
-        <h4>
-            {{ filteredItems.length }} Results
-        </h4>
-        <article class="item-box" ng-repeat="item in filteredItems = (items | filter:criteria | orderBy:sortField:reverse)">
-            <a class="item--thumb" ng-href="/item/{{ item.ref }}">
-                <img ng-src="{{ item.pictures[0] }}">
-            </a>
-            <div class="item--text">
-                <a
-                        class="h3"
-                        ng-href="/item/{{ item.ref }}">
-                    {{ item.name }}
-                </a>
-                <p
-                        class="price"
-                        ng-href="/item/{{ item.ref }}">
-                    {{ item.price | currency:"£ " }}</p>
-            </div>
-        </article>
-    </section>
+    <form class="col-lg-offset-9">
+        <input
+            class="form-control"
+            placeholder="e.g. Financial Accounting"
+            type="text"
+            ng-model="criteria">
+    </form>
 </section>
+
+
+
+<section class="container">
+
+    <h4>
+        {{ filteredItems.length }} Results
+    </h4>
+
+    <div
+            ng-repeat="item in filteredItems = (items | filter:criteria | orderBy:sortField:reverse)"
+            class="media col-lg-offset-1">
+        <a
+                class="pull-left"
+                href="/item/{{ item.ref }}">
+            <img class="media-object by-img-middle" src="{{ item.pictures[0] }}">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">{{ item.name }}</h4>
+            <p
+                    class="price"
+                    ng-href="/item/{{ item.ref }}">
+                {{ item.price | currency:"£ " }}</p>
+        </div>
+    </div>
+</section>
+
+

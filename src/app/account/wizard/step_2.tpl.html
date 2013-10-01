@@ -1,39 +1,52 @@
-<section
-        class="account">
-
-    <h3>
-        Invite 3 friends from your University to become a true member of Benkyet
-    </h3>
-
-    <input
-            class="ipt ipt--single"
-            autofocus="true"
-            type="text"
-            ng-model="criteria">
-
-    <section
-            ng-repeat="friend in filteredUnis = (friends | filter:criteria)">
-
+<section class="container">
+    <section class="col-lg-offset-2 col-lg-8">
+        <h3>
+            Invite 3 friends from your University
+        </h3>
 
         <input
-                ng-model="friend_state"
-                type="checkbox"
-                ng-click="addFriendRequest(friend.id)">
-        <img
-                style="vertical-align: middle;"
-                ng-src="{{ friend.picture.data.url }}">
-        <h4 class="inline">
-            {{ friend.name }}
-        </h4>
-        <br>
-        <h4 class="inline">
-            {{ friend.education[friend.education.length - 1].school.name }}
-        </h4>
+                class="form-control by-margin-top-10"
+                autofocus="true"
+                type="text"
+                ng-model="criteria">
+    </section>
+    <button
+            ng-disabled="!(valid_invite === true);"
+            ng-click="requestFriends()"
+            class="col-lg-offset-2 col-lg-8 btn btn-primary"
+            >Invite Friends</button>
+
+    <section class="col-lg-offset-1 by-invite-friends">
+        <section
+                class="col-lg-4 friends"
+                style="padding: 10px 0;"
+                ng-repeat="friend in filteredUnis = (friends | filter:criteria)">
+
+
+            <div class="media">
+                <input
+                        class="pull-left"
+                        style="margin-top: 17px;"
+                        ng-model="friend_state"
+                        type="checkbox"
+                        ng-click="addFriendRequest(friend.id)">
+                <img
+                        class="pull-left"
+                        ng-src="{{ friend.picture.data.url }}">
+                <div class="media-object">
+                    <h4 class="media-heading">{{ friend.name }}</h4>
+                    {{ friend.education[friend.education.length - 1].school.name }}
+                </div>
+            </div>
+
+        </section>
+
+
+
+
     </section>
 
-    <button
-            ng-click="requestFriends()"
-            class="btn btn--gray align-right"
-            >Invite</button>
+
+
 
 </section>
