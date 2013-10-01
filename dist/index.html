@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html ng-app="main" ng-controller="AppCtrl">
+<head>
+    <title>Benkyet</title>
+
+    <!--Required for dynamic routes in UI Router to work-->
+    <base href="/"></base>
+
+    <!--Classic favicon for browsers-->
+    <link rel="icon" type="image/png" href="./assets/favicon-ico-all-16x16.ico" />
+
+    <!-- http://t.co/dKP3o1e -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- iOS specific -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-startup-image" href="./assets/splash.png">
+
+    <!-- iOS specific icons -->
+    <link rel="shortcut icon" href="./assets/favicons/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" size="114x114" href="./assets/favicons/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" size="72x72" href="./assets/favicons/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="./assets/favicons/apple-touch-icon-precomposed.png">
+
+
+    <!-- social media tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@benkyet">
+    <meta name="twitter:title" content="Benkyet">
+    <meta name="twitter:description" content="Sell and buy from your community">
+    <meta name="twitter:creator" content="@benkyet">
+    <meta name="twitter:image:src" content="./assets/captions/og-img.png">
+    <meta property="og:title" content="Benkyet" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://benkyet.com" />
+    <meta property="og:image" content="./assets/captions/og-img.png" />
+    <meta property="og:description" content="Sell and buy from your community.">
+
+    <!-- font awesome from BootstrapCDN and normalizeCSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <!-- compiled CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/consoapp.css" />
+
+
+    <!--Facebook API Code-->
+    <script src="//connect.facebook.net/en_US/all.js"></script>
+    <script>
+        window.fbAsyncInit = function() {
+            // init the FB JS SDK
+//            FB.init({
+//                appId      : '199098720262784',             // App ID from the app dashboard
+//                channelUrl : '//dev.benkyet.com',           // Channel file for x-domain comms
+//                status     : true,                          // Check Facebook Login status
+//                xfbml      : true                           // Look for social plugins on the page
+//            });
+            FB.init({
+                appId      : '242355285916432',
+                channelUrl : '//localhost:8000',
+                status     : true,
+                xfbml      : true
+            });
+            // Additional initialization code such as adding Event Listeners goes here
+        };
+
+        // Load the SDK asynchronously
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+    <!-- compiled CSS -->
+    <script type="text/javascript" src="assets/consoapp.js"></script>
+
+    <!--[if IE 7>
+    <link rel="stylesheet" href="assets/font-awesome-ie7.min.css />
+    <![endif]-->
+</head>
+<body class="bs-docs-home">
+<div id="wrap">
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button
+                        class="navbar-toggle"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target=".bs-navbar-collapse">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="./" class="navbar-brand by-brand">Benkyet</a>
+            </div>
+            <nav
+                    class="navbar-collapse bs-navbar-collapse collapse"
+                    role="navigation"
+                    style="height: 1px;">
+                <ul class="nav navbar-nav navbar-right" ng-show="state === 'loggedOut'">
+                    <li>
+                        <a
+                                target="_top"
+                                href="/1.0/auth/facebook">Log In with Facebook</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated();">
+                    <li>
+                        <a href="./account">Account</a>
+                    </li>
+                    <li>
+                        <a href="" ng-click="logoutUser();">Log out</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="bs-old-docs">
+        <div class="container text-center">
+            <strong>
+                Start selling to your community
+                <a href="/1.0/auth/facebook">Today</a>
+            </strong>
+
+        </div>
+    </div>
+
+    <section
+            ng-show="isAuthenticated();"
+            class="by-banr by-banr--small">
+        <strong>
+            Replies to your ads are sent to <b class="by-usr--email">{{ current.email }}</b>
+        </strong>
+    </section>
+
+    <section
+            ng-show="itemUploaded === true;"
+            class="banr banr--green-small">
+        <p class="usr--status">
+            Item successfully added to your list.
+        </p>
+    </section>
+
+    <!--See UI router doc for info about templates-->
+    <div ui-view="main" class="layout"></div>
+
+    <div id="push"></div>
+</div>
+
+
+
+
+    <div class="bs-old-docs" id="footer">
+        <div class="container">
+            <p class="pull-left">Make your community the perfect marketplace</p>
+        </div>
+    </div>
+
+</body>
+</html>
