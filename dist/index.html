@@ -52,6 +52,16 @@
     <!--Facebook API Code-->
     <script src="//connect.facebook.net/en_US/all.js"></script>
     <script>
+
+        var fb_id;
+        if(window.location.host) {
+            fb_id = '242355285916432';
+        } else if (window.location.host === 'dev.benkyet.com') {
+            fb_id = '538342299575954';
+        } else if (window.location.host === 'benkyet.com') {
+            fb_id = '199098720262784';
+        }
+
         window.fbAsyncInit = function() {
             // init the FB JS SDK
 //            FB.init({
@@ -61,7 +71,7 @@
 //                xfbml      : true                           // Look for social plugins on the page
 //            });
             FB.init({
-                appId      : '242355285916432',
+                appId      : fb_id,
                 channelUrl : '//localhost:8000',
                 status     : true,
                 xfbml      : true
