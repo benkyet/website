@@ -54,7 +54,7 @@
     <script>
         console.log('ENV :: ' + window.location.host)
         var fb_id;
-        if(window.location.host) {
+        if(window.location.host === 'localhost:8000') {
             fb_id = '242355285916432';
         } else if (window.location.host === 'dev.benkyet.com') {
             fb_id = '538342299575954';
