@@ -1,3 +1,5 @@
+@import "compass";
+
 @font-face {
   font-family: "lostart";
   src: url("../assets/lost-art-font.woff");
@@ -35,4 +37,37 @@ $gmailBlue      :       rgba(40, 78, 168, 1.0000);
   background-color: #fff;
   border-color: #fff;
   //@include box-shadow(white(1) 0 0 2px);
+}
+
+
+.sprite2 {
+  background-image: url('../assets/sprites2.png');
+  cursor: pointer;
+  @include transition(all 0.2s ease);
+  &:hover{
+    @include transform(scale(1.2));
+  }
+}
+.sprite2--fb, .sprite2--twitter, .sprite2--mail {
+  width: 88px;
+  height: 70px;
+  display: inline-block;
+}
+.sprite2--fb {
+  background-position: 0 0;
+}
+.sprite2--twitter{
+  margin-left: 60px;
+  background-position: 0 -90px;
+}
+
+.by-center{
+  margin: 0 auto;
+  display: block;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Happy+Monkey);
+.by-font-monkey{
+  font-family: "Happy Monkey";
+  font-size: 19px;
 }

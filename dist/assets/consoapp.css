@@ -1295,12 +1295,13 @@ h1[id] {
   margin-bottom: 5px;
 }
 
+@import url(https://fonts.googleapis.com/css?family=Happy+Monkey);
 @font-face {
   font-family: "lostart";
   src: url("../assets/lost-art-font.woff");
 }
 
-/* line 6, ../../src/sass/by-styles.scss */
+/* line 8, ../../src/sass/by-styles.scss */
 .by-brand {
   font-family: lostart;
   font-size: 35px;
@@ -1309,29 +1310,77 @@ h1[id] {
   top: 4px;
 }
 
-/* line 14, ../../src/sass/by-styles.scss */
+/* line 16, ../../src/sass/by-styles.scss */
 .by-banr {
   width: 100%;
   margin: 0 auto;
   text-align: center;
 }
 
-/* line 20, ../../src/sass/by-styles.scss */
+/* line 22, ../../src/sass/by-styles.scss */
 .by-banr--small {
   background-color: #ffd76f;
   color: black;
 }
 
-/* line 26, ../../src/sass/by-styles.scss */
+/* line 28, ../../src/sass/by-styles.scss */
 .by-usr--email {
   color: #284ea8;
   text-decoration: underline;
 }
 
-/* line 32, ../../src/sass/by-styles.scss */
+/* line 34, ../../src/sass/by-styles.scss */
 .by-is-selected {
   color: #563d7c;
   text-shadow: none;
   background-color: #fff;
   border-color: #fff;
+}
+
+/* line 43, ../../src/sass/by-styles.scss */
+.sprite2 {
+  background-image: url("../assets/sprites2.png");
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+/* line 47, ../../src/sass/by-styles.scss */
+.sprite2:hover {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+/* line 51, ../../src/sass/by-styles.scss */
+.sprite2--fb, .sprite2--twitter, .sprite2--mail {
+  width: 88px;
+  height: 70px;
+  display: inline-block;
+}
+
+/* line 56, ../../src/sass/by-styles.scss */
+.sprite2--fb {
+  background-position: 0 0;
+}
+
+/* line 59, ../../src/sass/by-styles.scss */
+.sprite2--twitter {
+  margin-left: 60px;
+  background-position: 0 -90px;
+}
+
+/* line 64, ../../src/sass/by-styles.scss */
+.by-center {
+  margin: 0 auto;
+  display: block;
+}
+
+/* line 70, ../../src/sass/by-styles.scss */
+.by-font-monkey {
+  font-family: "Happy Monkey";
+  font-size: 19px;
 }
