@@ -138,6 +138,7 @@
     <article
             class="media col-lg-offset-1"
             ng-repeat="item in filteredItems = (items | filter:criteria | orderBy:sortField:reverse)"
+            ng-switch="isEditing"
             ng-controller="s-ItemCtrl">
         <a
                 class="pull-left"
@@ -147,8 +148,7 @@
                     ng-src="{{ item.pictures[0] }}">
         </a>
         <div
-                class="media-body"
-                ng-switch="isEditing">
+                class="media-body">
             <h3 class="media-heading">{{ item.name }}</h3>
             <p>{{ item.price | currency:"£ " }}</p>
 
@@ -158,70 +158,71 @@
             <button
                     class="btn btn-danger by-margin-top-10"
                     ng-click="removeItem(item.ref);">Remove</button>
-            <br>
-            <form
-                    name="updateItemForm"
-                    class="form form--blue lyt--update-item-form"
-                    ng-switch-when="true">
-                <div>
-                    <p class="h3 by-margin-top-10">
-                        ITEM DETAILS
-                    </p>
-                    <div class="form-inline col-lg-4">
-                        <input
-                                required
-                                ng-model="item.name"
-                                class="form-control by-margin-top-10"
-                                placeholder="Name of item"
-                                type="text">
-                    </div>
-                    <div class="form-inline col-lg-4">
-                        <input
-                                required
-                                ng-model="item.price"
-                                class="form-control by-margin-top-10"
-                                placeholder="Price"
-                                type="text">
-                    </div>
-                    <div class="form-inline col-lg-4">
-                        <input
-                                required
-                                ng-model="item.location"
-                                class="form-control by-margin-top-10"
-                                placeholder="Location"
-                                type="text">
-                    </div>
-                    <h4 class="by-margin-top-10">
-                        DESCRIPTION
-                    </h4>
-                    <textarea
-                            required
-                            class="form-control"
-                            ng-model="item.description"
-                            placeholder="Describe the item here">
-                    </textarea>
-                    <br>
-                    <p class="h4">
-                        COMMUNITY
-                    </p>
-                    <select
-                            required
-                            ng-options="g for g in groups"
-                            ng-model="item.group"></select>
 
-                    <!--<progress id="progress" value="0"></progress>-->
-                    <br>
-                    <br>
-                    <button
-                            class="btn btn-success"
-                            ng-click="updateItem(item);">Save</button>
-                    <button
-                            class="btn btn-default"
-                            ng-click="$parent.isEditing = false;">Cancel</button>
-                </div>
-            </form>
         </div>
+        <form
+                name="updateItemForm"
+                class=""
+                ng-switch-when="true">
+            <div>
+                <p class="h3 by-margin-top-10">
+                    ITEM DETAILS
+                </p>
+                <div class="form-inline col-lg-4">
+                    <input
+                            required
+                            ng-model="item.name"
+                            class="form-control by-margin-top-10"
+                            placeholder="Name of item"
+                            type="text">
+                </div>
+                <div class="form-inline col-lg-4">
+                    <input
+                            required
+                            ng-model="item.price"
+                            class="form-control by-margin-top-10"
+                            placeholder="Price"
+                            type="text">
+                </div>
+                <div class="form-inline col-lg-4">
+                    <input
+                            required
+                            ng-model="item.location"
+                            class="form-control by-margin-top-10"
+                            placeholder="Location"
+                            type="text">
+                </div>
+                <h4 class="by-margin-top-10">
+                    DESCRIPTION
+                </h4>
+                <textarea
+                        required
+                        class="form-control"
+                        ng-model="item.description"
+                        placeholder="Describe the item here">
+                </textarea>
+                <br>
+                <p class="h4">
+                    COMMUNITY
+                </p>
+                <select
+                        required
+                        ng-options="g for g in groups"
+                        ng-model="item.group"></select>
+
+                <!--<progress id="progress" value="0"></progress>-->
+                <br>
+                <br>
+                <button
+                        class="btn btn-success"
+                        ng-click="updateItem(item);">Save</button>
+                <button
+                        class="btn btn-default"
+                        ng-click="$parent.isEditing = false;">Cancel</button>
+            </div>
+        </form>
     </article>
+
 </section>
 
 </section>
