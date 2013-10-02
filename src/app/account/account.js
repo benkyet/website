@@ -101,10 +101,10 @@ states on $stateProvider
             return $scope.data.form.$dirty && $scope.data.form.$valid;
         };
 
+        $scope.item = {};
 
         $scope.groups = rGroups;
-
-        $scope.item = {};
+        $scope.item.group = 'LSE';
 
 
         $rootScope.sendItem = function() {
