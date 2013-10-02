@@ -21,6 +21,12 @@ $gutter-width       :       1em;
   margin: 0 auto;
   display: inline;
 }
+.inline{
+  display: inline-block;
+}
+.align-right{
+  float: right;
+}
 
 /* Few header declarations
    ========================================================================== */
@@ -229,7 +235,7 @@ $formBlueBottom   :         rgba(24, 119, 207, 1.0000);
    ========================================================================== */
 @font-face {
   font-family: "lostart";
-  src: url("./../assets/lost-art-font.woff");
+  src: url("../assets/lost-art-font.woff");
 }
 @import url(https://fonts.googleapis.com/css?family=Happy+Monkey);
 @import url(https://fonts.googleapis.com/css?family=Indie+Flower);
