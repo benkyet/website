@@ -135,35 +135,40 @@
 <section class="col-lg-offset-2 col-lg-8">
     <h3>Your items for sale</h3>
 
-    <article
-            class="media col-lg-offset-1"
+    <section
             ng-repeat="item in filteredItems = (items | filter:criteria | orderBy:sortField:reverse)"
             ng-switch="isEditing"
+            class="by-margin-top-10"
             ng-controller="s-ItemCtrl">
-        <a
-                class="pull-left"
-                ng-href="/item/{{ item.ref }}">
-            <img
-                    class="media-object by-img-middle"
-                    ng-src="{{ item.pictures[0] }}">
-        </a>
-        <div
-                class="media-body">
-            <h3 class="media-heading">{{ item.name }}</h3>
-            <p>{{ item.price | currency:"£ " }}</p>
 
-            <button
-                    class="btn btn-warning by-margin-top-10"
-                    ng-click="isEditing = true;">Edit</button>
-            <button
-                    class="btn btn-danger by-margin-top-10"
-                    ng-click="removeItem(item.ref);">Remove</button>
+        <article
+                class="media col-lg-offset-1">
+            <a
+                    class="pull-left"
+                    ng-href="/item/{{ item.ref }}">
+                <img
+                        class="media-object by-img-middle"
+                        ng-src="{{ item.pictures[0] }}">
+            </a>
+            <div
+                    class="media-body">
+                <h3 class="media-heading">{{ item.name }}</h3>
+                <p>{{ item.price | currency:"£ " }}</p>
 
-        </div>
-        <br>
+                <button
+                        class="btn btn-warning by-margin-top-10"
+                        ng-click="isEditing = true;">Edit</button>
+                <button
+                        class="btn btn-danger by-margin-top-10"
+                        ng-click="removeItem(item.ref);">Remove</button>
+
+            </div>
+        </article>
+
+
         <form
                 name="updateItemForm"
-                class=""
+                class="col-lg-offset-2"
                 ng-switch-when="true">
             <div>
                 <p class="h3 by-margin-top-10">
@@ -222,7 +227,12 @@
                         ng-click="$parent.isEditing = false;">Cancel</button>
             </div>
         </form>
-    </article>
+
+
+
+
+    </section>
+
 
 </section>
 
