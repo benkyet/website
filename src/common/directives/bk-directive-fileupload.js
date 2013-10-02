@@ -32,7 +32,7 @@ angular.module('bk-directive-fileupload', [])
                                     "<br>"
                                 document.getElementById('list').insertBefore(span, null);
                             }
-                        })(j)
+                        })(j);
                         reader.readAsDataURL(f);
 
                         //Iterate through j, what we use as index iteration

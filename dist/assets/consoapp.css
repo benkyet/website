@@ -1424,18 +1424,7 @@ body {
   background-color: #eee;
 }
 
-/* Lastly, apply responsive CSS fixes as necessary */
-@media (max-width: 1000px) {
-  /* line 111, ../../src/sass/by-styles.scss */
-  #footer {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-  }
-}
-/* line 120, ../../src/sass/by-styles.scss */
+/* line 109, ../../src/sass/by-styles.scss */
 .by-margin-top-10 {
   margin: 10px auto;
 }
