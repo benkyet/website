@@ -28,7 +28,7 @@ angular.module('bk-directive-fileupload', [])
                             return function(e) {
                                 scope.$apply(scope.pictures.push(e.target.result.split(',')[1]));
                                 var span = document.createElement('span');
-                                span.innerHTML = "<img class='thumb' src='"+ e.target.result +"'>" +
+                                span.innerHTML = "<img class='by-img-middle by-margin-top-10' src='"+ e.target.result +"'>" +
                                     "<br>"
                                 document.getElementById('list').insertBefore(span, null);
                             }

@@ -1390,7 +1390,7 @@ h1[id] {
   width: 120px;
 }
 
-/* line 82, ../../src/sass/by-styles.scss */
+/* line 80, ../../src/sass/by-styles.scss */
 html,
 body {
   height: 100%;
@@ -1398,7 +1398,7 @@ body {
 }
 
 /* Wrapper for page content to push down footer */
-/* line 88, ../../src/sass/by-styles.scss */
+/* line 86, ../../src/sass/by-styles.scss */
 #wrap {
   min-height: 100%;
   height: auto !important;
@@ -1408,25 +1408,25 @@ body {
 }
 
 /* Set the fixed height of the footer here */
-/* line 97, ../../src/sass/by-styles.scss */
+/* line 95, ../../src/sass/by-styles.scss */
 #push,
 #footer {
   height: 70px;
 }
 
-/* line 102, ../../src/sass/by-styles.scss */
+/* line 100, ../../src/sass/by-styles.scss */
 #by-body {
   margin-bottom: 30px;
 }
 
-/* line 106, ../../src/sass/by-styles.scss */
+/* line 104, ../../src/sass/by-styles.scss */
 #footer {
   background-color: #eee;
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
 @media (max-width: 1000px) {
-  /* line 113, ../../src/sass/by-styles.scss */
+  /* line 111, ../../src/sass/by-styles.scss */
   #footer {
     margin-left: -20px;
     margin-right: -20px;
@@ -1435,7 +1435,7 @@ body {
     padding-bottom: 20px;
   }
 }
-/* line 122, ../../src/sass/by-styles.scss */
+/* line 120, ../../src/sass/by-styles.scss */
 .by-margin-top-10 {
   margin: 10px auto;
 }
