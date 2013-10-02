@@ -9,16 +9,31 @@ states on $stateProvider
 .config(function config( $stateProvider ) {
     $stateProvider
         .state('wizard', {
-            abstract: true,
             url: '/wizard',
+            abstract: true,
             views: {
                 main: {
                     template: '<div><div ui-view></div></div>',
                     controller: 'WizardCtrl'
                 }
+            },
+            resolve: {
+                rGroups: ['List', function(List) {
+                    return List.getGroups()
+                        .then(
+                        function(res) {
+                            return res.groups;
+                        },
+                        function(err) {
+                            console.log(err);
+                        }
+                    )
+                }]
             }
         })
         .state('wizard.step1', {
+            parent: 'wizard',
+            name: 'step1',
             url: '/step1',
             templateUrl: 'account/wizard/step_1.tpl.html',
             resolve: {
@@ -28,17 +43,16 @@ states on $stateProvider
             }
         })
         .state('wizard.step2', {
+//            parent: 'wizard',
+//            name: 'step2',
             url: '/step2',
             templateUrl: 'account/wizard/step_2.tpl.html',
+//            controller: 'WizardCtrl',
             resolve: {
                 rUser: ['User', function(User) {
                     return User.autologin('login');
                 }]
             }
-        })
-        .state('wizard.step3', {
-            url: '/step3',
-            templateUrl: 'account/wizard/step_3.tpl.html'
         })
         .state('account', {
             url: '/account',
@@ -67,17 +81,99 @@ states on $stateProvider
         })
 })
 
-.controller('WizardCtrl', function Wizard($scope, $state) {
-        $scope.unic = 'James'
+.controller('WizardCtrl', function Wizard($scope, $state, User, rGroups, $rootScope, $timeout) {
+
+        $scope.goToAccount = function() {
+            $state.transitionTo('account');
+
+        };
+
+        $scope.goToStep2 = function() {
+            $state.transitionTo('wizard.step2');
+//            window.location.href='/wizard/step2'
+        }
+
+
+        $scope.state = {};
+        $scope.data = {};
+
+        $scope.canSave = function(form_name) {
+            return $scope.data.form.$dirty && $scope.data.form.$valid;
+        };
+
+
+        $scope.groups = rGroups;
+
+        $scope.item = {};
+
+
+        $rootScope.sendItem = function() {
+            $scope.isProgressing = true;
+
+//            var data = {
+//                name: $scope.item.name,
+//                price: $scope.item.price,
+//                location: $scope.item.location,
+//                description: $scope.item.description,
+//                pictures: $scope.pictures
+//            }
+
+            var str = JSON.stringify($scope.data.pictures);
+
+            var form = new FormData();
+            form.append('name', $scope.item.name)
+            form.append('price', $scope.item.price)
+            form.append('location', $scope.item.location)
+            form.append('description', $scope.item.description)
+            form.append('group', $scope.item.group)
+            form.append('pictures', str)
+
+//            $http.post('/1.0/item', data)
+//                .success(function(d) {console.log(d)})
+//                .error(function(e) {console.log(e)})
+
+            var qs = document.querySelector.bind(document);
+
+            var xhr = new XMLHttpRequest()
+            xhr.open('POST', '/1.0/item');
+
+//            xhr.upload.onprogress = function(e) {
+////                qs('#progress').value = e.loaded;
+////                qs('#progress').max = e.total;
+//            }
+
+            xhr.onload = function() {
+                console.log('uploaded');
+
+                $scope.$apply(function() {
+//                    User.items().then(
+//                        function(res) {
+                            $scope.isProgressing = false;
+//                            $scope.items = res.items;
+//                            $rootScope.itemUploaded = true;
+//                            $timeout(function() {
+//                                $rootScope.itemUploaded = false;
+//                            }, 5000);
+//                        },
+//                        function(err) {
+//                        }
+//                    );
+
+                    $state.transitionTo('account');
+
+//
+//                    $scope.$apply($scope.isAddingItem = false);
+                })
+
+            }
+            xhr.send(form);
+        }
 
         $scope.user = {}
 
             FB.getLoginStatus(function (response) {
-                console.log(response.authResponse.accessToken);
-                console.log(response.authResponse)
                 var token = response.authResponse.accessToken;
                 FB.api('/me?fields=education&access_token=' + token, function(res) {
-                    console.log(res)
                     var len = res.education.length;
                     console.log(len)
                     var val = res.education[len - 1].school.name.toString();
@@ -93,14 +189,15 @@ states on $stateProvider
 
 
         $scope.requestFriends = function() {
+            console.log($scope.item)
             FB.ui({
                 method: 'apprequests',
                 message: 'My Great Request',
                 title: 'Hello there',
                 to: invites
             }, function() {
-                console.log(arguments);
-                $scope.$apply($state.transitionTo('account'));
+                console.log('invite sent')
+                $scope.$apply($rootScope.sendItem());
             });
         }
 
@@ -150,6 +247,9 @@ states on $stateProvider
         //to transfer its data to the local scope
         $scope.current = rUser;
 
+        $scope.groups = rGroups;
+        $rootScope.groups = rGroups;
+
         $scope.goToWizard = function() {
             $state.transitionTo('wizard.step1')
         }
@@ -171,7 +271,7 @@ states on $stateProvider
         };
 
 
-        $scope.groups = rGroups;
+
 
         User.items().then(
             function(res) {
@@ -219,10 +319,14 @@ states on $stateProvider
 
         $scope.canSave = function(form_name) {
             return $scope[form_name].$dirty && $scope[form_name].$valid;
-        }
+        };
+
+
+
+
 
         $scope.sendItem = function() {
-                $scope.isProgressing = true;
+            $scope.isProgressing = true;
 
 //            var data = {
 //                name: $scope.item.name,
@@ -242,7 +346,6 @@ states on $stateProvider
             form.append('group', $scope.item.group)
             form.append('pictures', str)
 
-
 //            $http.post('/1.0/item', data)
 //                .success(function(d) {console.log(d)})
 //                .error(function(e) {console.log(e)})
@@ -251,8 +354,6 @@ states on $stateProvider
 
             var xhr = new XMLHttpRequest()
             xhr.open('POST', '/1.0/item');
-
-            xhr.setRequestHeader("token", Session.getToken());
 
 //            xhr.upload.onprogress = function(e) {
 ////                qs('#progress').value = e.loaded;
@@ -280,11 +381,10 @@ states on $stateProvider
                 })
                 ;
             }
-
             xhr.send(form);
-
-
         }
+
+
 
     })
 .controller('s-ItemCtrl', function($scope, Item) {

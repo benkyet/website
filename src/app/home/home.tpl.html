@@ -96,27 +96,31 @@
 </div>
 
 <section class="container bs-old-docs">
-    <div class="col-sm-4"
-         style="position: relative;top: 7px;">
-        <b style="margin-right: 20px;">Sort</b>
-        <a
-                href=""
-                class="label--single text-light"
+    <div
+            class="col-sm-4"
+            style="padding: 0 0 4px 0;">
+        <b style="margin-right: 15px;">Sort</b>
+        <button
+                class="btn btn-default btn-sm"
+                ng-init="sort('price')"
                 ng-click="sort('price')"
-                ng-class="{'is-selected': isSortUp('price') || isSortDown('price')}"
-                >Price</a>
-        <i
-                class="glyphicon"
-                ng-class="{'glyphicon-chevron-up': isSortUp('price'), 'glyphicon-chevron-down': isSortDown('price')}"></i>
-        <a
-                href=""
-                class="label--single text-light"
+                ng-class="{'is-selected': isSortUp('price') || isSortDown('price')}">
+
+            Price
+            <i
+                    class="glyphicon"
+                    ng-class="{'glyphicon-chevron-up': isSortUp('price'), 'glyphicon-chevron-down': isSortDown('price')}"></i>
+        </button>
+
+        <button
+                class="btn btn-default btn-sm"
                 ng-click="sort('name')"
-                ng-class="{'is-selected': isSortUp('name') || isSortDown('name')}"
-                >Name</a>
-        <i
-                class="glyphicon"
-                ng-class="{'glyphicon-chevron-up': isSortUp('name'), 'glyphicon-chevron-down': isSortDown('name')}"></i>
+                ng-class="{'is-selected': isSortUp('name') || isSortDown('name')}">
+            Name
+            <i
+                    class="glyphicon"
+                    ng-class="{'glyphicon-chevron-up': isSortUp('name'), 'glyphicon-chevron-down': isSortDown('name')}"></i>
+        </button>
     </div>
 
     <form class="col-lg-offset-9">
@@ -132,26 +136,43 @@
 
 <section class="container">
 
-    <h4>
-        {{ filteredItems.length }} Results
-    </h4>
+    <section class="col-sm-12">
 
-    <div
-            ng-repeat="item in filteredItems = (items | filter:criteria | orderBy:sortField:reverse)"
-            class="media col-lg-offset-1">
-        <a
-                class="pull-left"
-                href="/item/{{ item.ref }}">
-            <img class="media-object by-img-middle" src="{{ item.pictures[0] }}">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">{{ item.name }}</h4>
-            <p
-                    class="price"
-                    ng-href="/item/{{ item.ref }}">
-                {{ item.price | currency:"£ " }}</p>
+
+        <h4>
+            {{ filteredItems.length }} Results
+        </h4>
+
+        <div
+                ng-repeat="item in filteredItems = (items | filter:criteria | orderBy:sortField:reverse)"
+                class="media col-sm-6">
+            <a
+                    class="pull-left"
+                    href="/item/{{ item.ref }}">
+                <img class="media-object by-img-middle" src="{{ item.pictures[0] }}">
+            </a>
+
+
+            <div class="media-body">
+                <h4 class="media-heading">
+                    <a
+                            style="color: white;"
+                            href="/item/{{ item.ref }}">{{ item.name }}</a>
+                </h4>
+                <h4
+                        class="media-heading"
+                        ng-href="/item/{{ item.ref }}">
+                    {{ item.price | currency:"£ " }}</h4>
+                <p
+                        class="media-body">{{ item.location }}</p>
+
+
+            </div>
         </div>
-    </div>
+
+    </section>
+
+
 </section>
 
 

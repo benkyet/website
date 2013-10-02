@@ -27,7 +27,7 @@ $gmailYellow      :       rgba(255, 215, 111, 1.0000);
 $gmailBlue      :       rgba(40, 78, 168, 1.0000);
 .by-usr--email{
   color: $gmailBlue;
-  text-decoration: underline;
+  //text-decoration: underline;
 }
 
 //Taken from btn-outline-inverse in bs-benkyet.scss
@@ -96,21 +96,28 @@ body {
 /* Set the fixed height of the footer here */
 #push,
 #footer {
-  height: 50px;
+  height: 70px;
 }
+
+#by-body{
+  margin-bottom: 30px;
+}
+
 #footer {
   background-color: #eee;
+
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
-//@media (max-width: 767px) {
-//  #footer {
-//    margin-left: -20px;
-//    margin-right: -20px;
-//    padding-left: 20px;
-//    padding-right: 20px;
-//  }
-//}
+@media (max-width: 1000px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+}
 
 .by-margin-top-10{
   margin: 10px auto;

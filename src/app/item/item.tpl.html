@@ -62,7 +62,7 @@
                 <br>
                 <button
                         ng-disabled="!canSave();"
-                        class="btn btn--gray">
+                        class="btn btn-success">
                     Send Reply
                 </button>
 
@@ -70,53 +70,22 @@
 
         </form>
 
+        <section
+                ng-show="success === true">
+            <div
+                    class="alert alert-success">
+                <strong>Done!</strong>
+                Your message was sent successfully.
+            </div>
+            <button
+                    class="btn btn-default"
+                    ng-click="backButton();">
+                Back
+            </button>
+        </section>
+
+
 
 
     </section>
 </section>
-
-<br>
-<section class="container">
-
-
-
-    <section class="side">
-
-        <aside>
-
-
-
-
-
-
-
-                <section
-                        class="lyt--message-sent"
-                        ng-show="success === true">
-                    <div class="img-bg">
-                        <img src="./../assets/tick.png">
-                    </div>
-
-                    <h3>Message sent!</h3>
-                    <p>
-                        Check your inbox for replies from this seller.
-                    </p>
-                    <button
-                            class="btn btn--blue"
-                            ng-click="backButton();">
-                        Back
-                    </button>
-                </section>
-
-
-
-
-
-
-        </aside>
-
-
-    </section>
-
-</section>
-<br>

@@ -56,16 +56,28 @@ angular.module( 'main', [
 
         $rootScope.state = 'loggedOut';
 
-        /*
-        Gets called when user clicks on log out button
-         */
-        $rootScope.logoutUser = function() {
-            User.logout();
+
+
+        $rootScope.editEmail = function() {
+            $rootScope.isUpdatingAccount = true;
         }
 
     })
 
-    .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+    .controller( 'AppCtrl', function AppCtrl ( $scope, $location, User, $rootScope ) {
+
+        $scope.toggleMenu = function() {
+            document.getElementById('js-button-toggle').click();
+        };
+
+        /*
+         Gets called when user clicks on log out button
+         */
+        $rootScope.logoutUser = function() {
+            User.logout();
+            document.getElementById('js-button-toggle').click();
+        };
+
 
     })
 ;

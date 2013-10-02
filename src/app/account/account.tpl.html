@@ -11,6 +11,7 @@
     </button>
 
 
+
 <form
         name="updateAccountForm"
         class="col-lg-offset-2 col-lg-8"
@@ -29,27 +30,28 @@
                 type="text"
                 placeholder="Email"
                 class="form-control by-margin-top-10">
-        <input
-                required
-                ng-init="current.pass = ''"
-                ng-model="current.pass"
-                type="password"
-                placeholder="Change password"
-                class="form-control by-margin-top-10">
-        <input
-                required
-                ng-init="current.confirm = ''"
-                ng-model="current.confirm"
-                type="password"
-                placeholder="Confirm New Password"
-                class="form-control by-margin-top-10">
+        <!--<input-->
+                <!--required-->
+                <!--ng-init="current.pass = ''"-->
+                <!--ng-model="current.pass"-->
+                <!--type="password"-->
+                <!--placeholder="Change password"-->
+                <!--class="form-control by-margin-top-10">-->
+        <!--<input-->
+                <!--required-->
+                <!--ng-init="current.confirm = ''"-->
+                <!--ng-model="current.confirm"-->
+                <!--type="password"-->
+                <!--placeholder="Confirm New Password"-->
+                <!--class="form-control by-margin-top-10">-->
 
         <div class="position-button-middle">
             <button
-                    class="btn btn--gray center--inline"
-                    ng-disabled="!canSave('updateAccountForm') || isProgressing;">Save</button>
+                    class="btn btn-success"
+                    ng-click="updateUser();"
+                    ng-click="">Save</button>
             <button
-                    class="btn btn--gray center--inline"
+                    class="btn btn-default"
                     ng-click="isUpdatingAccount = false;">Cancel</button>
             <img
                     ng-show="isProgressing"
@@ -60,72 +62,72 @@
     </div>
 </form>
 
-<form
-        name="newItemForm"
-        ng-submit="sendItem();"
-        ng-show="isAddingItem === true"
-        class="form form--blue lyt--new-item-form">
-    <div>
-        <p class="h3">
-            Item details
-        </p>
-        <input
-                required
-                ng-model="item.name"
-                class="ipt ipt--inline"
-                placeholder="Title - Editor - Year"
-                type="text">
-        <input
-                required
-                ng-model="item.price"
-                class="ipt ipt--inline"
-                placeholder="Price"
-                type="text">
-        <input
-                required
-                ng-model="item.location"
-                class="ipt ipt--inline"
-                placeholder="Location"
-                type="text">
-        <p class="h4">
-            DESCRIPTION
-        </p>
-        <textarea
-                required
-                ng-model="item.description"
-                rows="10"
-                cols="98"
-                placeholder="Describe the item here">
-        </textarea>
-        <br>
-        <p class="h4">
-            COMMUNITY
-        </p>
-        <select
-                required
-                ng-options="g for g in groups"
-                ng-model="item.group"></select>
-        <p class="h4">
-            PICTURES
-        </p>
-        <fileupload pictures="pictures"></fileupload>
-        <br>
-        <!--<progress id="progress" value="0"></progress>-->
-        <button
-                class="btn btn--gray"
-                ng-disabled="!canSave('newItemForm') || isProgressing;">
-            Send</button>
-        <button
-                class="btn btn--gray"
-                ng-click="isAddingItem = false;">Cancel</button>
-        <img
-                ng-show="isProgressing"
-                src="./../assets/spinner.gif"
-                style="vertical-align: middle;">
-    </div>
+<!--<form-->
+        <!--name="newItemForm"-->
+        <!--ng-submit="sendItem();"-->
+        <!--ng-show="isAddingItem === true"-->
+        <!--class="form form--blue lyt--new-item-form">-->
+    <!--<div>-->
+        <!--<p class="h3">-->
+            <!--Item details-->
+        <!--</p>-->
+        <!--<input-->
+                <!--required-->
+                <!--ng-model="item.name"-->
+                <!--class="ipt ipt--inline"-->
+                <!--placeholder="Title - Editor - Year"-->
+                <!--type="text">-->
+        <!--<input-->
+                <!--required-->
+                <!--ng-model="item.price"-->
+                <!--class="ipt ipt--inline"-->
+                <!--placeholder="Price"-->
+                <!--type="text">-->
+        <!--<input-->
+                <!--required-->
+                <!--ng-model="item.location"-->
+                <!--class="ipt ipt--inline"-->
+                <!--placeholder="Location"-->
+                <!--type="text">-->
+        <!--<p class="h4">-->
+            <!--DESCRIPTION-->
+        <!--</p>-->
+        <!--<textarea-->
+                <!--required-->
+                <!--ng-model="item.description"-->
+                <!--rows="10"-->
+                <!--cols="98"-->
+                <!--placeholder="Describe the item here">-->
+        <!--</textarea>-->
+        <!--<br>-->
+        <!--<p class="h4">-->
+            <!--COMMUNITY-->
+        <!--</p>-->
+        <!--<select-->
+                <!--required-->
+                <!--ng-options="g for g in groups"-->
+                <!--ng-model="item.group"></select>-->
+        <!--<p class="h4">-->
+            <!--PICTURES-->
+        <!--</p>-->
+        <!--<fileupload pictures="pictures"></fileupload>-->
+        <!--<br>-->
+        <!--&lt;!&ndash;<progress id="progress" value="0"></progress>&ndash;&gt;-->
+        <!--<button-->
+                <!--class="btn btn--gray"-->
+                <!--ng-disabled="!canSave('newItemForm') || isProgressing;">-->
+            <!--Send</button>-->
+        <!--<button-->
+                <!--class="btn btn--gray"-->
+                <!--ng-click="isAddingItem = false;">Cancel</button>-->
+        <!--<img-->
+                <!--ng-show="isProgressing"-->
+                <!--src="./../assets/spinner.gif"-->
+                <!--style="vertical-align: middle;">-->
+    <!--</div>-->
 
 
-</form>
+<!--</form>-->
 
 <br>
 <br>
@@ -133,58 +135,69 @@
 <section class="col-lg-offset-2 col-lg-8">
     <h3>Your items for sale</h3>
 
-    <article class="item-box" ng-repeat="item in filteredItems = (items | filter:criteria | orderBy:sortField:reverse)" ng-controller="s-ItemCtrl">
-        <a class="item--thumb" ng-href="/item/{{ item.ref }}">
-            <img ng-src="{{ item.pictures[0] }}">
+    <article
+            class="media col-lg-offset-1"
+            ng-repeat="item in filteredItems = (items | filter:criteria | orderBy:sortField:reverse)"
+            ng-controller="s-ItemCtrl">
+        <a
+                class="pull-left"
+                ng-href="/item/{{ item.ref }}">
+            <img
+                    class="media-object by-img-middle"
+                    ng-src="{{ item.pictures[0] }}">
         </a>
-        <div class="item--text" ng-switch="isEditing">
-            <h3>{{ item.name }}</h3>
-            <p class="price">{{ item.price | currency:"£ " }}</p>
-            <br>
-            <a
-                    class="btn btn--gray"
-                    href=""
-                    ng-click="isEditing = true">Edit</a>
-            <a
-                    class="btn btn--gray"
-                    href=""
-                    ng-click="removeItem(item.ref)">Remove</a>
+        <div
+                class="media-body"
+                ng-switch="isEditing">
+            <h3 class="media-heading">{{ item.name }}</h3>
+            <p>{{ item.price | currency:"£ " }}</p>
+
+            <button
+                    class="btn btn-warning by-margin-top-10"
+                    ng-click="isEditing = true;">Edit</button>
+            <button
+                    class="btn btn-danger by-margin-top-10"
+                    ng-click="removeItem(item.ref);">Remove</button>
             <br>
             <form
                     name="updateItemForm"
                     class="form form--blue lyt--update-item-form"
                     ng-switch-when="true">
                 <div>
-                    <p class="h3">
-                        Item details
+                    <p class="h3 by-margin-top-10">
+                        ITEM DETAILS
                     </p>
-                    <input
-                            required
-                            ng-model="item.name"
-                            class="ipt ipt--inline"
-                            placeholder="Name of item"
-                            type="text">
-                    <input
-                            required
-                            ng-model="item.price"
-                            class="ipt ipt--inline"
-                            placeholder="Price"
-                            type="text">
-                    <input
-                            required
-                            ng-model="item.location"
-                            class="ipt ipt--inline"
-                            placeholder="Location"
-                            type="text">
-
-                    <p class="h4">
+                    <div class="form-inline col-lg-4">
+                        <input
+                                required
+                                ng-model="item.name"
+                                class="form-control by-margin-top-10"
+                                placeholder="Name of item"
+                                type="text">
+                    </div>
+                    <div class="form-inline col-lg-4">
+                        <input
+                                required
+                                ng-model="item.price"
+                                class="form-control by-margin-top-10"
+                                placeholder="Price"
+                                type="text">
+                    </div>
+                    <div class="form-inline col-lg-4">
+                        <input
+                                required
+                                ng-model="item.location"
+                                class="form-control by-margin-top-10"
+                                placeholder="Location"
+                                type="text">
+                    </div>
+                    <h4 class="by-margin-top-10">
                         DESCRIPTION
-                    </p>
+                    </h4>
                     <textarea
                             required
+                            class="form-control"
                             ng-model="item.description"
-                            rows="10"
-                            cols="72"
                             placeholder="Describe the item here">
                     </textarea>
                     <br>
@@ -200,10 +213,10 @@
                     <br>
                     <br>
                     <button
-                            class="btn btn--gray"
+                            class="btn btn-success"
                             ng-click="updateItem(item);">Save</button>
                     <button
-                            class="btn btn--gray"
+                            class="btn btn-default"
                             ng-click="$parent.isEditing = false;">Cancel</button>
                 </div>
             </form>

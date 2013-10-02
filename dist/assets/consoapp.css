@@ -1327,7 +1327,6 @@ h1[id] {
 /* line 28, ../../src/sass/by-styles.scss */
 .by-usr--email {
   color: #284ea8;
-  text-decoration: underline;
 }
 
 /* line 34, ../../src/sass/by-styles.scss */
@@ -1412,16 +1411,31 @@ body {
 /* line 97, ../../src/sass/by-styles.scss */
 #push,
 #footer {
-  height: 50px;
+  height: 70px;
 }
 
-/* line 101, ../../src/sass/by-styles.scss */
+/* line 102, ../../src/sass/by-styles.scss */
+#by-body {
+  margin-bottom: 30px;
+}
+
+/* line 106, ../../src/sass/by-styles.scss */
 #footer {
   background-color: #eee;
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
-/* line 115, ../../src/sass/by-styles.scss */
+@media (max-width: 1000px) {
+  /* line 113, ../../src/sass/by-styles.scss */
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+}
+/* line 122, ../../src/sass/by-styles.scss */
 .by-margin-top-10 {
   margin: 10px auto;
 }

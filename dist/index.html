@@ -103,6 +103,7 @@
         <div class="container">
             <div class="navbar-header">
                 <button
+                        id="js-button-toggle"
                         class="navbar-toggle"
                         type="button"
                         data-toggle="collapse"
@@ -123,15 +124,20 @@
                     <li>
                         <a
                                 target="_top"
+                                ng-click="toggleMenu();"
                                 href="/1.0/auth/facebook">Log In with Facebook</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated();">
                     <li>
-                        <a href="./account">Account</a>
+                        <a
+                                ng-click="toggleMenu();"
+                                href="./account">Account</a>
                     </li>
                     <li>
-                        <a href="" ng-click="logoutUser();">Log out</a>
+                        <a
+                                href=""
+                                ng-click="logoutUser();">Log out</a>
                     </li>
                 </ul>
             </nav>
@@ -152,7 +158,15 @@
             ng-show="isAuthenticated();"
             class="by-banr by-banr--small">
         <strong>
-            Replies to your ads are sent to <b class="by-usr--email">{{ current.email }}</b>
+            Replies to your ads are sent to
+            <b class="by-usr--email">{{ current.email }}</b>
+            <br>
+            (<strong>
+                <a
+                        style="color: green;text-decoration: underline;"
+                        href="/account"
+                        ng-click="editEmail();">Change it</a>
+            </strong>)
         </strong>
     </section>
 
@@ -165,7 +179,7 @@
     </section>
 
     <!--See UI router doc for info about templates-->
-    <div ui-view="main" class="layout"></div>
+    <div ui-view="main" id="by-body"></div>
 
     <div id="push"></div>
 </div>
