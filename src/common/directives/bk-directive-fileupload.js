@@ -17,7 +17,7 @@ angular.module('bk-directive-fileupload', [])
                     for(var i = 0, f=files[i]; i<length; i++) {
 
                         //Check the file is an image
-                        if(!f.type.match('image.*')) {
+                        if(!f.type.match("image.*")) {
                             continue
                         };
                         var reader = new FileReader();
@@ -32,9 +32,6 @@ angular.module('bk-directive-fileupload', [])
 
                                 var img = document.createElement('img');
                                 img.src = e.target.result;
-
-                                var canvas = document.getElementById('canvas');
-                                var ctx = canvas.getContext('2d');
 
                                 var width = img.width;
                                 var height = img.height;
@@ -51,20 +48,26 @@ angular.module('bk-directive-fileupload', [])
                                     }
                                 }
 
-                                canvas.width = width;
-                                canvas.height = height;
-                                ctx.drawImage(img, 0, 0, width, height);
+                                canvasResize(f, {
+                                    width: width,
+                                    height: height,
+                                    crop: false,
+                                    quality: 80,
+                                    //rotate: 90,
+                                    callback: function(data, width, height) {
+                                        console.log("DATA :: " + data, width, height)
 
-                                var dataurl = canvas.toDataURL('image/png')
 
-                                console.log(width, height)
+                                        scope.$apply(scope.pictures.push(data.split(',')[1]));
+                                        var span = document.createElement('span');
+                                        span.innerHTML = "<img class='by-img-middle by-margin-top-10' src='"+ data +"'>" +
+                                            "<br>"
+                                        document.getElementById('list').insertBefore(span, null);
 
 
-                                scope.$apply(scope.pictures.push(dataurl.split(',')[1]));
-                                var span = document.createElement('span');
-                                span.innerHTML = "<img class='by-img-middle by-margin-top-10' src='"+ dataurl +"'>" +
-                                    "<br>"
-                                document.getElementById('list').insertBefore(span, null);
+
+                                    }
+                                });
                             }
                         })(j);
                         reader.readAsDataURL(f);
@@ -76,6 +79,9 @@ angular.module('bk-directive-fileupload', [])
 
 
                 }
+
+
+
 
             }
         }
