@@ -26,7 +26,7 @@ angular.module('bk-directive-fileupload', [])
                         //to keep a reference of the current id, that's j
                         reader.onload = (function(id) {
                             return function(e) {
-                                scope.pictures.push(e.target.result.split(',')[1]);
+                                scope.$apply(scope.pictures.push(e.target.result.split(',')[1]));
                                 var span = document.createElement('span');
                                 span.innerHTML = "<img class='thumb' src='"+ e.target.result +"'>" +
                                     "<br>"

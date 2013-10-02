@@ -2,8 +2,8 @@ var express = require('express');
 var app = express();
 var httpProxy = require('http-proxy'),
     endpoint  = {
-        host:   'dev.benkyet.com', // or IP address
-        port:   80,
+        host:   'localhost', // or IP address
+        port:   3003,
         prefix: '/1.0'
     };
 var proxy = new httpProxy.RoutingProxy();

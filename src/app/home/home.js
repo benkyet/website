@@ -59,11 +59,21 @@ angular.module('bk-page-home', [
             FB.ui({
                 method: 'apprequests',
                 message: 'My Great Request',
-                title: 'Hello there'
+                title: 'Hello there',
             }, function() {
                 console.log(arguments);
             });
         }
+
+
+
+        FB.getLoginStatus(function (response) {
+            console.log(response.authResponse.accessToken);
+            var token = 'CAACEdEose0cBAHLdrZCX3zC5SY2m2wfV9VKQBZCyDwIvESJPybZCL2FZC2GBhIpq7cTSE034UIJeNFZBgcnAaOCRy7rZBVnpIhhzGbtcPpu8Xze0JL0JXpZAUI7N0sTjZC154ssjXlF1ydqL2wNvV0x6LEAbdf8DxkPFSFEQ2cPd1nZCa5MxHUrA9oH0jvrdftfnef8ZC0JYSLlwZDZD';
+            FB.api('/me/friends?fields=education&access_token=' + token, function(response) {
+                console.log(response);
+            })
+        })
 
 
         $scope.items = rList.items;

@@ -12,7 +12,7 @@
     <!-- http://t.co/dKP3o1e -->
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="width=1050">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
     <!-- iOS specific -->
@@ -42,8 +42,9 @@
     <meta property="og:description" content="Sell and buy from your community.">
 
     <!-- font awesome from BootstrapCDN and normalizeCSS -->
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link href="https://raw.github.com/necolas/normalize.css/master/normalize.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <!-- compiled CSS -->
     <link rel="stylesheet" type="text/css" href="assets/consoapp.css" />
 
@@ -51,13 +52,29 @@
     <!--Facebook API Code-->
     <script src="//connect.facebook.net/en_US/all.js"></script>
     <script>
+        console.log('ENV :: ' + window.location.host)
+        var fb_id;
+        if(window.location.host === 'localhost:8000') {
+            fb_id = '242355285916432';
+        } else if (window.location.host === 'dev.benkyet.com') {
+            fb_id = '538342299575954';
+        } else if (window.location.host === 'benkyet.com') {
+            fb_id = '199098720262784';
+        }
+
         window.fbAsyncInit = function() {
             // init the FB JS SDK
+//            FB.init({
+//                appId      : '199098720262784',             // App ID from the app dashboard
+//                channelUrl : '//dev.benkyet.com',           // Channel file for x-domain comms
+//                status     : true,                          // Check Facebook Login status
+//                xfbml      : true                           // Look for social plugins on the page
+//            });
             FB.init({
-                appId      : '199098720262784',             // App ID from the app dashboard
-                channelUrl : '//dev.benkyet.com',           // Channel file for x-domain comms
-                status     : true,                          // Check Facebook Login status
-                xfbml      : true                           // Look for social plugins on the page
+                appId      : fb_id,
+                channelUrl : '//localhost:8000',
+                status     : true,
+                xfbml      : true
             });
             // Additional initialization code such as adding Event Listeners goes here
         };
@@ -80,33 +97,79 @@
     <link rel="stylesheet" href="assets/font-awesome-ie7.min.css />
     <![endif]-->
 </head>
-<body>
+<body class="bs-docs-home">
+<div id="wrap">
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button
+                        id="js-button-toggle"
+                        class="navbar-toggle"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target=".bs-navbar-collapse">
 
-    <header class="banner">
-        <div class="nav">
-            <h2 class="title"><a href="/" class="brand">Benkyet</a></h2>
-            <ul class="menu" ng-show="state === 'loggedOut'">
-                <li><a class="h5" href="/login">Sign Up</a></li>
-                <a href="/login" class="btn btn--gray">Log In</a>
-            </ul>
-            <ul class="menu" ng-show="isAuthenticated();">
-                <li><a class="h5" href="/account">Account</a></li>
-                <button class="btn btn--gray" ng-click="logoutUser();">Log Out</button>
-            </ul>
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="./" class="navbar-brand by-brand">Benkyet</a>
+            </div>
+            <nav
+                    class="navbar-collapse bs-navbar-collapse collapse"
+                    role="navigation"
+                    style="height: 1px;">
+                <ul class="nav navbar-nav navbar-right" ng-show="state === 'loggedOut'">
+                    <li>
+                        <a
+                                target="_top"
+                                ng-click="toggleMenu();"
+                                href="/1.0/auth/facebook">Log In with Facebook</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated();">
+                    <li>
+                        <a
+                                ng-click="toggleMenu();"
+                                href="./account">Account</a>
+                    </li>
+                    <li>
+                        <a
+                                href=""
+                                ng-click="logoutUser();">Log out</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
-    <section class="sub-banner">
-        <p class="content sub-banner__tagline">
-            Start selling to your community <a href="/login" class="btn--orange">today</a>
-        </p>
-    </section>
+
+    <div class="bs-old-docs">
+        <div class="container text-center">
+            <strong>
+                Start selling to your community
+                <a href="/1.0/auth/facebook">Today</a>
+            </strong>
+
+        </div>
+    </div>
+
     <section
             ng-show="isAuthenticated();"
-            class="banr banr--small">
-        <p class="usr--status">
-            Replies to your ads are sent to <b class="usr--email">{{ current.email }}</b>
-        </p>
+            class="by-banr by-banr--small">
+        <strong>
+            Replies to your ads are sent to
+            <b class="by-usr--email">{{ current.email }}</b>
+            <br>
+            (<strong>
+                <a
+                        style="color: green;text-decoration: underline;"
+                        href="/account"
+                        ng-click="editEmail();">Change it</a>
+            </strong>)
+        </strong>
     </section>
+
     <section
             ng-show="itemUploaded === true;"
             class="banr banr--green-small">
@@ -116,30 +179,19 @@
     </section>
 
     <!--See UI router doc for info about templates-->
-    <div ui-view="main" class="layout"></div>
+    <div ui-view="main" id="by-body"></div>
+
+    <div id="push"></div>
+</div>
 
 
-    <footer class="footer-banner">
-        <section class="footer">
-            <section class="footer__right">
-                <a href="https://twitter.com/benkyet" target="_blank">
-                    <img class="sprite sprite--twitter">
-                </a>
-                <a href="https://www.facebook.com/benkyet" target="_blank">
-                    <img class="sprite sprite--fb">
-                </a>
-            </section>
-            <hr width="975" style="margin-left: -1em;">
-            <section class="footer__left">
-                <h2 class="brand">Benkyet</h2>
-            </section>
-            <section class="footer__right">
-                Make your community a badass marketplace<br>
-                &copy; Benkyet
-            </section>
-        </section>
-    </footer>
 
+
+    <div class="bs-old-docs" id="footer">
+        <div class="container">
+            <p class="pull-left">Make your community the perfect marketplace</p>
+        </div>
+    </div>
 
 </body>
 </html>
