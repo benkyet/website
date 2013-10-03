@@ -118,15 +118,23 @@ states on $stateProvider
 //                pictures: $scope.pictures
 //            }
 
-            var str = JSON.stringify($scope.data.pictures);
+
 
             var form = new FormData();
-            form.append('name', $scope.item.name)
-            form.append('price', $scope.item.price)
-            form.append('location', $scope.item.location)
-            form.append('description', $scope.item.description)
-            form.append('group', $scope.item.group)
-            form.append('pictures', str)
+            form.append('name', $scope.item.name);
+            form.append('price', $scope.item.price);
+            form.append('location', $scope.item.location);
+            form.append('description', $scope.item.description);
+            form.append('group', $scope.item.group);
+
+            if($scope.data.pictures.length === 0) {
+
+            } else {
+                var str = JSON.stringify($scope.data.pictures);
+                form.append('pictures', str);
+            }
+
+
 
 //            $http.post('/1.0/item', data)
 //                .success(function(d) {console.log(d)})
