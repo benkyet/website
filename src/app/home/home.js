@@ -26,6 +26,7 @@ angular.module('bk-page-home', [
                     } else {
                         group = '';
                     }
+                    group = 'LSE';
                     return List.getGroupItems(group).then(
                         function(res) {
                             return {items: res.items, group: group};
@@ -37,7 +38,7 @@ angular.module('bk-page-home', [
                     );
                 }],
                 rEvents: ['List', '$stateParams', function(List, $stateParams) {
-                    return List.getEvents($stateParams.g).then(
+                    return List.getEvents('LSE').then(
                         function(res) {
                             return res.group
                         },
