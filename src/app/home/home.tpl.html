@@ -119,7 +119,7 @@
         <b style="margin-right: 15px;">Sort</b>
         <button
                 class="btn btn-default btn-sm"
-                ng-init="sort('price')"
+                ng-init="sort('price');sort('price');"
                 ng-click="sort('price')"
                 ng-class="{'is-selected': isSortUp('price') || isSortDown('price')}">
 
@@ -143,7 +143,7 @@
     <form class="col-lg-offset-9">
         <input
             class="form-control"
-            placeholder="e.g. Financial Accounting"
+            placeholder="EC 201"
             type="text"
             ng-model="criteria">
     </form>
