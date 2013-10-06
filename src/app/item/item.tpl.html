@@ -46,7 +46,8 @@
                         required
                         type="text"
                         class="form-control"
-                        ng-model="item.name"
+                        ng-init="message.subject = item.name"
+                        ng-model="message.subject"
                         placeholder="">
                 <br>
                 <textarea
