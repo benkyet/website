@@ -48,10 +48,10 @@ angular.module( 'main', [
          */
         $rootScope.isAuthenticated = function() {
             if($rootScope.state === 'loggedIn') {
-                $scope.start_link = '/account';
+                $rootScope.start_link = '/account';
                 return true;
             } else {
-                $scope.start_link = '/1.0/auth/facebook';
+                $rootScope.start_link = '/1.0/auth/facebook';
                 return false;
             }
         }
