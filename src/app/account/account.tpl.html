@@ -6,8 +6,8 @@
         class="btn btn-outline-inverse btn-lg by-margin-top-10"
         ng-click="isUpdatingAccount = true; isAddingItem = false;">Update Account</button>
 <button
-        class="btn btn-outline-inverse btn-lg"
-        ng-click="goToWizard();">Add Item
+        class="btn btn-success btn-lg"
+        ng-click="goToWizard();">Add Book
     </button>
 
 
@@ -215,6 +215,10 @@
                         required
                         ng-options="g for g in groups"
                         ng-model="item.group"></select>
+                <p class="h4 by-margin-top-10">
+                    PICTURES
+                </p>
+                <fileupload pictures="item.pictures"></fileupload>
 
                 <!--<progress id="progress" value="0"></progress>-->
                 <br>

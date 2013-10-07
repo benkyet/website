@@ -57,8 +57,7 @@ angular.module('bk-directive-fileupload', [])
                                     callback: function(data, width, height) {
                                         console.log("DATA :: " + data, width, height)
 
-
-                                        scope.$apply(scope.pictures.push(data.split(',')[1]));
+                                        scope.$apply(scope.pictures.push(data));
                                         var span = document.createElement('span');
                                         span.innerHTML = "<img class='by-img-middle by-margin-top-10' src='"+ data +"'>" +
                                             "<br>"

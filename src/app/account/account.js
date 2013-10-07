@@ -290,12 +290,11 @@ states on $stateProvider
         );
 
         $scope.updateItem = function(item, idx) {
-            console.log(item)
-            var item_to_update = JSON.parse(JSON.stringify(item));
-            delete item_to_update.seller_id;
-            delete item_to_update.pictures;
-            delete item_to_update.ref;
 
+            var item_to_update = item;
+            delete item_to_update.seller_id;
+            delete item_to_update.ref;
+            console.log(item_to_update)
             Item.updateItem(item_to_update).then(
                 function(res) {
                     //console.log(res);
@@ -398,9 +397,9 @@ states on $stateProvider
 .controller('s-ItemCtrl', function($scope, Item) {
         $scope.updateItem = function(item) {
             console.log(item)
-            var item_to_update = JSON.parse(JSON.stringify(item));
+            var item_to_update = item;
             delete item_to_update.seller_id;
-            delete item_to_update.pictures;
+//            delete item_to_update.pictures;
             delete item_to_update.ref;
 
             Item.updateItem(item_to_update).then(
